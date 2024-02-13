@@ -1,4 +1,8 @@
+import useClock from "../../../hooks/useClock";
+
 const TimeAndDate = () => {
+  const { formattedDate, formattedTime } = useClock();
+
   return (
     <>
       <div className="flex items-center space-x-4">
@@ -52,7 +56,9 @@ const TimeAndDate = () => {
             strokeLinejoin="round"
           />
         </svg>
-        <span>Thursday, February 25, 2021</span>
+        <span>
+          {formattedDate} {formattedTime}
+        </span>
       </div>
     </>
   );
