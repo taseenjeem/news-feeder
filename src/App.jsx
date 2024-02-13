@@ -1,4 +1,4 @@
-import NavigationBar from "./components/global/navigation-bar/NavigationBar";
+import NavigationBar from "./components/global-components/navigation-bar/NavigationBar";
 
 const App = () => {
   return (
