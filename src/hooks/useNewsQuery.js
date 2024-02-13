@@ -14,7 +14,7 @@ const useNewsQuery = () => {
   const [error, setError] = useState(null);
 
   // Function to fetch news data
-  const fetchNews = async () => {
+  const fetchNews = async (category) => {
     try {
       // Set loading status and message
       setIsLoading({
@@ -24,7 +24,11 @@ const useNewsQuery = () => {
       });
 
       // Fetch news data from API
-      const response = await fetch("http://localhost:8000/v2/top-headlines");
+      const response = await fetch(
+        `http://localhost:8000/v2/top-headlines?category=${
+          !category ? "general" : category
+        }`
+      );
 
       // Check if response is successful
       if (!response.ok) {
@@ -57,7 +61,7 @@ const useNewsQuery = () => {
   }, []);
 
   // Return news data, loading state, and error
-  return { news, isLoading, error };
+  return { news, fetchNews, isLoading, error };
 };
 
 export default useNewsQuery;
