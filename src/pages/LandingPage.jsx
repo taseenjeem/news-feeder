@@ -6,13 +6,17 @@ import { NewsContext } from "../context/all-contexts";
 const LandingPage = () => {
   const { news, isLoading, error } = useContext(NewsContext);
 
+  let eachNews = news?.articles?.map((item) => item);
+
+  console.log(eachNews);
+
   return (
     <>
       {error ? (
         <div className="min-h-[80vh] flex justify-center items-center text-lg font-semibold text-red-500">
           Error: {error.message}
         </div>
-      ) : isLoading.status ? (
+      ) : isLoading.active ? (
         <div className="min-h-[80vh] flex justify-center items-center text-lg font-semibold">
           <p>{isLoading.message}</p>
         </div>

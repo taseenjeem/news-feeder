@@ -6,7 +6,7 @@ const useNewsQuery = () => {
 
   // State to manage loading state with status and message
   const [isLoading, setIsLoading] = useState({
-    status: false,
+    active: false,
     message: "",
   });
 
@@ -18,8 +18,7 @@ const useNewsQuery = () => {
     try {
       // Set loading status and message
       setIsLoading({
-        ...isLoading,
-        status: true,
+        active: true,
         message: "Fetching news for you! Please wait...",
       });
 
@@ -48,19 +47,25 @@ const useNewsQuery = () => {
     } finally {
       // Reset loading status
       setIsLoading({
-        ...isLoading,
-        status: false,
+        active: false,
         message: "",
       });
     }
   };
 
-  // useEffect hook to fetch news data when the component mounts
+  // useEffect hook to fetch news data when the component mounts or news is null
   useEffect(() => {
-    fetchNews();
-  }, []);
+    if (news === null) {
+      setIsLoading({
+        active: true,
+        message: "Finding news for you...",
+      });
 
-  // Return news data, loading state, and error
+      fetchNews();
+    }
+  }, [news]);
+
+  // Return news data, fetch function, loading state, and error
   return { news, fetchNews, isLoading, error };
 };
 
