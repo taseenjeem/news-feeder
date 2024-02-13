@@ -34,6 +34,8 @@ const useNewsQuery = () => {
         // If not successful, throw an error
         const errorMessage = `Fetching news failed: Error status - ${response.status}`;
         throw new Error(errorMessage);
+      } else {
+        setError(null);
       }
 
       // Parse response data

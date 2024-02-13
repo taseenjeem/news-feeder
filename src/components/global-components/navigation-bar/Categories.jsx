@@ -31,7 +31,12 @@ const Categories = () => {
         <ul className="flex flex-wrap items-center justify-center gap-5 text-xs font-semibold lg:text-base">
           {newsCategories.map((item) => (
             <li key={item.id}>
-              <a onClick={() => handleClick(item.name)}>{item.name}</a>
+              <a
+                className="cursor-pointer"
+                onClick={() => handleClick(item.name)}
+              >
+                {item.name}
+              </a>
             </li>
           ))}
         </ul>
