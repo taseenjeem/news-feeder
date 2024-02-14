@@ -26,11 +26,13 @@ const useNewsQuery = () => {
       });
 
       // Construct URL based on category and search query
-      const url = query
-        ? `http://localhost:8000/v2/search?q=${query}`
-        : `http://localhost:8000/v2/top-headlines?category=${
-            !category ? "general" : category
-          }`;
+      let url = "http://localhost:8000/v2/top-headlines";
+
+      if (query) {
+        url = `http://localhost:8000/v2/search?q=${query}`;
+      } else if (category) {
+        url = `http://localhost:8000/v2/top-headlines?category=${category}`;
+      }
 
       // Fetch news data from the API
       const response = await fetch(url);
