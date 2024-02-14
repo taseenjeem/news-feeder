@@ -1,74 +1,53 @@
 import { useEffect, useState } from "react";
+import useDebounce from "./useDebounce";
 
 const useNewsQuery = () => {
-  // State to store news data
   const [news, setNews] = useState(null);
-
-  // State to manage loading state with status and message
-  const [isLoading, setIsLoading] = useState({
-    active: false,
-    message: "",
-  });
-
-  // State to handle errors
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState({ active: false, message: "" });
   const [error, setError] = useState(null);
 
-  // Function to fetch news data
-  const fetchNews = async (category) => {
+  const debouncedSearchQuery = useDebounce(searchQuery, 2000);
+
+  const fetchNews = async (category, query = "") => {
     try {
-      // Set loading status and message
       setIsLoading({
         active: true,
         message: "Fetching news for you! Please wait...",
       });
 
-      // Fetch news data from API
-      const response = await fetch(
-        `http://localhost:8000/v2/top-headlines?category=${
-          !category ? "general" : category
-        }`
-      );
+      const url = query
+        ? `http://localhost:8000/v2/search?q=${query}`
+        : `http://localhost:8000/v2/top-headlines?category=${
+            !category ? "general" : category
+          }`;
+      const response = await fetch(url);
 
-      // Check if response is successful
       if (!response.ok) {
-        // If not successful, throw an error
         const errorMessage = `Fetching news failed: Error status - ${response.status}`;
         throw new Error(errorMessage);
       } else {
         setError(null);
       }
 
-      // Parse response data
       const data = await response.json();
-
-      // Set news data
       setNews(data);
     } catch (err) {
-      // Catch and handle errors
       setError(err);
     } finally {
-      // Reset loading status
-      setIsLoading({
-        active: false,
-        message: "",
-      });
+      setIsLoading({ active: false, message: "" });
     }
   };
 
-  // useEffect hook to fetch news data when the component mounts or news is null
   useEffect(() => {
-    if (news === null) {
-      setIsLoading({
-        active: true,
-        message: "Finding news for you...",
-      });
-
+    if (debouncedSearchQuery !== "") {
+      fetchNews(null, debouncedSearchQuery);
+    } else {
       fetchNews();
     }
-  }, [news]);
+  }, [debouncedSearchQuery]);
 
-  // Return news data, fetch function, loading state, and error
-  return { news, fetchNews, isLoading, error };
+  return { news, fetchNews, searchQuery, setSearchQuery, isLoading, error };
 };
 
 export default useNewsQuery;
