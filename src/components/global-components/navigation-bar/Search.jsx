@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { NewsContext } from "../../../context/all-contexts";
 
 const Search = () => {
