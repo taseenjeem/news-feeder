@@ -2,10 +2,10 @@ import thumb from "../../../assets/thumb.png";
 
 const AsideNews = ({ newsWithoutDescription }) => {
   // Find the first item with urlToImage
-  const itemWithImage = newsWithoutDescription.find((item) => item.urlToImage);
+  const itemWithImage = newsWithoutDescription?.find((item) => item.urlToImage);
 
   // Separate items with and without image
-  const itemsWithoutImage = newsWithoutDescription.filter(
+  const itemsWithoutImage = newsWithoutDescription?.filter(
     (item) => !item.urlToImage
   );
 
@@ -40,11 +40,7 @@ const AsideNews = ({ newsWithoutDescription }) => {
               key={item.title}
               className="col-span-12 mt-6 md:col-span-4 border-b-2 border-[#D5D1C9]"
             >
-              <a
-                href={item.urlToImage}
-                target="_blank"
-                className="cursor-pointer"
-              >
+              <a href={item.url} target="_blank" className="cursor-pointer">
                 <h3 className="mb-2.5 text-xl font-bold lg:text-[20px]">
                   {item.title}
                 </h3>

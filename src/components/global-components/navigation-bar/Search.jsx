@@ -2,13 +2,17 @@ import { useContext } from "react";
 import { NewsContext } from "../../../context/all-contexts";
 
 const Search = () => {
+  // Accessing searchQuery and setSearchQuery from NewsContext
   const { searchQuery, setSearchQuery } = useContext(NewsContext);
 
+  // Function to handle input change
   const handleChange = (e) => {
-    setSearchQuery(e.target.value);
+    setSearchQuery(e.target.value); // Update searchQuery with the new value
   };
+
   return (
     <>
+      {/* Search input field */}
       <div className="pt-2 relative text-gray-600">
         <input
           className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
@@ -18,6 +22,7 @@ const Search = () => {
           onChange={handleChange}
           placeholder="Search"
         />
+        {/* Search button */}
         <button type="submit" className="absolute right-0 top-0 mt-5 mr-4">
           <svg
             className="text-gray-600 h-4 w-4 fill-current"
