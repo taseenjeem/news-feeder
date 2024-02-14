@@ -38,7 +38,7 @@ const useNewsQuery = () => {
       // Check if response is successful
       if (!response.ok) {
         // If not successful, throw an error
-        const errorMessage = `Fetching news failed: Error status - ${response.status}`;
+        const errorMessage = `No News found For This Category || Status - ${response.status}`;
         throw new Error(errorMessage);
       } else {
         setError(null);

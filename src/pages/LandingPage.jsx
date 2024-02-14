@@ -19,15 +19,13 @@ const LandingPage = () => {
 
   return (
     <>
-      <>
-        {error ? (
-          <ErrorMessage message={`Error: ${error.message}`} />
-        ) : isLoading.active ? (
-          <LoadingMessage message={isLoading.message} />
-        ) : (
-          <NewsList newsItems={newsItems} />
-        )}
-      </>
+      {error ? (
+        <ErrorMessage message={`Error: ${error.message}`} />
+      ) : isLoading.active ? (
+        <LoadingMessage message={isLoading.message} />
+      ) : (
+        <NewsList newsItems={newsItems} />
+      )}
     </>
   );
 };
