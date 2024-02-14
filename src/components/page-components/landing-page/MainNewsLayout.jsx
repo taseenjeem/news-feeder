@@ -2,6 +2,16 @@ const MainNewsLayout = ({ newsWithDescription }) => {
   const [firstItem, secondItem, thirdItem, fourthItem, ...remainingItems] =
     newsWithDescription || [];
 
+  // Function to format the date
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
+
   return (
     <>
       <div className="col-span-12 grid grid-cols-12 gap-6 self-start xl:col-span-8">
@@ -15,7 +25,9 @@ const MainNewsLayout = ({ newsWithDescription }) => {
               </h3>
             </a>
             <p className="text-base text-[#5C5955]">{firstItem?.description}</p>
-            <p className="mt-5 text-base text-[#5C5955]">1 hour ago</p>
+            <p className="mt-5 text-base text-[#5C5955]">
+              {formatDate(firstItem?.publishedAt)}
+            </p>
           </div>
           {/* thumb */}
           <div className="col-span-12 lg:col-span-8">
@@ -34,7 +46,9 @@ const MainNewsLayout = ({ newsWithDescription }) => {
               </h3>
             </a>
             <p className="text-base text-[#292219]">{thirdItem?.description}</p>
-            <p className="mt-5 text-base text-[#5C5955]">1 hour ago</p>
+            <p className="mt-5 text-base text-[#5C5955]">
+              {formatDate(thirdItem?.publishedAt)}
+            </p>
           </div>
           {/* thumb */}
           <div className="col-span-12 md:col-span-6">
@@ -57,7 +71,9 @@ const MainNewsLayout = ({ newsWithDescription }) => {
                 </h3>
               </a>
               <p className="text-base text-[#292219]">{item?.description}</p>
-              <p className="mt-5 text-base text-[#94908C]">Yesterday</p>
+              <p className="mt-5 text-base text-[#94908C]">
+                {formatDate(item?.publishedAt)}
+              </p>
             </div>
           </div>
         ))}

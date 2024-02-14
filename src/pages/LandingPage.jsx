@@ -15,12 +15,10 @@ const LandingPage = () => {
     newsItems = news?.articles.map((item) => item);
   }
 
-  console.log(newsItems);
-
   return (
     <>
       {error ? (
-        <ErrorMessage message={`Error: ${error.message}`} />
+        <ErrorMessage message={error.message} />
       ) : isLoading.active ? (
         <LoadingMessage message={isLoading.message} />
       ) : (
