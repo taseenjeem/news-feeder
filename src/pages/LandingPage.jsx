@@ -12,12 +12,12 @@ const LandingPage = () => {
   let newsItems;
 
   // Check if news object exists and has a 'result' or 'articles' property
-  if (news && news.result) {
+  if (news && news?.result) {
     // If 'result' exists, map over it
-    newsItems = news.result.map((item) => item);
-  } else if (news && news.articles) {
+    newsItems = news?.result.map((item) => item);
+  } else if (news && news?.articles) {
     // If 'articles' exists, map over it
-    newsItems = news.articles.map((item) => item);
+    newsItems = news?.articles.map((item) => item);
   }
 
   return (
