@@ -7,7 +7,7 @@ const useNewsQuery = () => {
   const [isLoading, setIsLoading] = useState({ active: false, message: "" });
   const [error, setError] = useState(null);
 
-  const debouncedSearchQuery = useDebounce(searchQuery, 2000);
+  const debouncedSearchQuery = useDebounce(searchQuery, 1000);
 
   const fetchNews = async (category, query = "") => {
     try {
