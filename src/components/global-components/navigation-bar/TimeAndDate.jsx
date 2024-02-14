@@ -1,6 +1,7 @@
 import useClock from "../../../hooks/useClock";
 
 const TimeAndDate = () => {
+  // Fetch formatted date and time using useClock hook
   const { formattedDate, formattedTime } = useClock();
 
   return (
@@ -56,6 +57,7 @@ const TimeAndDate = () => {
             strokeLinejoin="round"
           />
         </svg>
+        {/* Display formatted date and time */}
         <span>
           {formattedDate} {formattedTime}
         </span>
