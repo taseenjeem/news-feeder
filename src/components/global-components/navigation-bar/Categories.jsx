@@ -12,11 +12,14 @@ const newsCategories = [
   { id: crypto.randomUUID(), name: "Technology" },
   { id: crypto.randomUUID(), name: "Environment" },
   { id: crypto.randomUUID(), name: "Education" },
-  { id: crypto.randomUUID(), name: "Fashion" },
-  { id: crypto.randomUUID(), name: "Food" },
-  { id: crypto.randomUUID(), name: "Travel" },
-  { id: crypto.randomUUID(), name: "Art & Culture" },
-  { id: crypto.randomUUID(), name: "Opinion" },
+  { id: crypto.randomUUID(), name: "Fashion & Style" },
+  { id: crypto.randomUUID(), name: "Adventure" },
+  { id: crypto.randomUUID(), name: "Music" },
+  { id: crypto.randomUUID(), name: "Politics" },
+  { id: crypto.randomUUID(), name: "Religion" },
+  { id: crypto.randomUUID(), name: "History" },
+  { id: crypto.randomUUID(), name: "Finance" },
+  { id: crypto.randomUUID(), name: "Art" },
 ];
 
 const Categories = () => {
